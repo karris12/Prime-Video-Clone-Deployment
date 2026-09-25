@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
 import HomeTile from "./HomeTile";
 import HomeTileData from "./HomeTileData";
 import NavUl from "./NavUl";
@@ -57,7 +56,7 @@ function HomeCarousel() {
         });
       },
       // { rootMargin: "100% 0% 100% 0%" },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     observer.observe(event);
   }
@@ -75,7 +74,7 @@ function HomeCarousel() {
         });
       },
       // { rootMargin: "100% 0% 100% 0%" }
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     observer.observe(event);
   }

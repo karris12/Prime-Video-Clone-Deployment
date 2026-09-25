@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 
 function Footer() {
   const year = new Date().getFullYear();
@@ -8,17 +7,17 @@ function Footer() {
       <div className="logo"></div>
       <ul className="footer-ul">
         <li className="footer-li">
-          <a href="" className="footer-anchor">
+          <a href="/" className="footer-anchor">
             Terms and Privacy Notice
           </a>
         </li>
         <li className="footer-li">
-          <a href="" className="footer-anchor">
+          <a href="/" className="footer-anchor">
             Send us feedback
           </a>
         </li>
         <li className="footer-li">
-          <a href="" className="footer-anchor">
+          <a href="/" className="footer-anchor">
             Help
           </a>
         </li>

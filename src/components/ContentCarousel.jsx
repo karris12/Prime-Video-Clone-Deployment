@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
 import ContentTile from "./ContentTile";
 import ContentTileData from "./ContentTileData";
 import LeftArrowButton from "./LeftArrowButton";
@@ -26,7 +25,7 @@ function ContentCarousel() {
         });
       },
       { rootMargin: "100% 0% 100% 0%" },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     observer.observe(event);
   }
@@ -44,7 +43,7 @@ function ContentCarousel() {
         });
       },
       { rootMargin: "100% 0% 100% 0%" },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     observer.observe(event);
   }

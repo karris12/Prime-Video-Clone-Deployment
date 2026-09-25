@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
+import React from "react";
 import backimg from "../images/7ec0559f-6180-4b29-becd-0f12f702ec5c._UR3840,1440_SX1440_FMjpg_.jpeg";
 
 function ListItem(props) {
@@ -93,7 +92,7 @@ function ListItem(props) {
                 <div className="home-tile-details-buttons-play-div1">
                   <div className="home-tile-details-buttons-play-div2 ">
                     <label className="home-tile-details-buttons-play-label">
-                      <a className="home-tile-details-buttons-play-a" href="">
+                      <a className="home-tile-details-buttons-play-a" href="/">
                         <svg
                           className="_22qEau"
                           viewBox="0 0 80 80"
@@ -154,7 +153,7 @@ function ListItem(props) {
                   </label>
                 </div>
                 <div className="home-tile-details-buttons-info-div">
-                  <a href="" className="home-tile-details-buttons-info-a">
+                  <a href="/" className="home-tile-details-buttons-info-a">
                     <svg
                       viewBox="0 0 24 24"
                       height="24"

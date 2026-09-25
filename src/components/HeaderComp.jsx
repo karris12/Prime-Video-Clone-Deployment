@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
 import Categories from "./Categories";
 import HeaderCategoryLi from "./HeaderCategoryLi";
 import Languages from "./Languages";
@@ -35,7 +34,7 @@ function Header() {
       >
         <div className="header-div-2">
           <div className="header-div-3">
-            <a className="header-anchor" href="">
+            <a className="header-anchor" href="/">
               <img
                 className="header-anchor-img"
                 src="https://m.media-amazon.com/images/G/01/digital/video/web/Logo-min.png"
