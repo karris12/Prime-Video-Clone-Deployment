@@ -13,8 +13,6 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner'
         NEXUS_URL = 'http://18.227.80.189:8081'
         NEXUS_REPO = 'netflix-releases'
-        NEXUS_USER = credentials('nexus-credentials').username
-        NEXUS_PASS = credentials('nexus-credentials').password
     }
 
     stages {
@@ -44,12 +42,14 @@ pipeline {
 
         stage('Upload Artifact to Nexus') {
             steps {
-                sh '''
-                    zip -r netflix-build-${BUILD_NUMBER}.zip build
-                    curl -u "$NEXUS_USER:$NEXUS_PASS" \
-                        --upload-file "netflix-build-${BUILD_NUMBER}.zip" \
-                        "$NEXUS_URL/repository/$NEXUS_REPO/netflix-build-${BUILD_NUMBER}.zip"
-                '''
+                withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+                    sh '''
+                        zip -r netflix-build-${BUILD_NUMBER}.zip build
+                        curl -u "$NEXUS_USER:$NEXUS_PASS" \
+                            --upload-file "netflix-build-${BUILD_NUMBER}.zip" \
+                            "$NEXUS_URL/repository/$NEXUS_REPO/netflix-build-${BUILD_NUMBER}.zip"
+                    '''
+                }
             }
         }
 
