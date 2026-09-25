@@ -29,7 +29,7 @@ sudo systemctl status jenkins
 ```
 
 
-# **Install Docker on Ubuntu:**
+# **Installl Docker on Ubuntu:**
 ```
 # Add Docker's official GPG key:
 sudo apt-get update
