@@ -12,7 +12,7 @@ pipeline {
         IMAGE_TAG = 'latest'
         SCANNER_HOME = tool 'sonar-scanner'
         NEXUS_URL = 'http://3.15.28.192:8081'
-        NEXUS_REPO = 'netflix-releases'
+        NEXUS_REPO = 'netflix'
     }
 
     stages {
