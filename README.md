@@ -52,7 +52,7 @@ sudo systemctl status docker
 
 # **Install Trivy on Ubuntu:**
 
-Reference Doc: https://aquasecurity.github.io/trivy/v0.55/getting-started/installation/
+Reference Document: https://aquasecurity.github.io/trivy/v0.55/getting-started/installation/
 ```
 sudo apt-get install wget apt-transport-https gnupg
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
