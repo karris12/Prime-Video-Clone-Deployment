@@ -40,19 +40,6 @@ pipeline {
             }
         }
 
-        stage('Upload Artifact to Nexus') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
-                    sh '''
-                        zip -r netflix-build-${BUILD_NUMBER}.zip build
-                        curl -u "$NEXUS_USER:$NEXUS_PASS" \
-                            --upload-file "netflix-build-${BUILD_NUMBER}.zip" \
-                            "$NEXUS_URL/repository/$NEXUS_REPO/netflix-build-${BUILD_NUMBER}.zip"
-                    '''
-                }
-            }
-        }
-
         stage('Run Tests') {
             steps {
                 sh 'CI=true npm test -- --watch=false --passWithNoTests'
@@ -69,32 +56,40 @@ pipeline {
             }
         }
 
-        stage("Quality Gate") {
-    steps {
-        timeout(time: 5, unit: 'MINUTES') {
-            script {
-                waitForQualityGate abortPipeline: true
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    script {
+                        waitForQualityGate abortPipeline: true
+                    }
+                }
             }
         }
-    }
-}
 
         stage('OWASP Dependency Check') {
             steps {
-                script {
-                    try {
-                        dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-                        dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-                    } catch (Exception e) {
-                        echo "Dependency-Check skipped: ${e.getMessage()}"
-                    }
-                }
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
 
         stage('Trivy File Scan') {
             steps {
                 sh 'trivy fs --security-checks vuln,config . > trivy.txt || true'
+            }
+        }
+
+        stage('Upload Artifact to Nexus') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+                    sh '''
+                        zip -r netflix-build-${BUILD_NUMBER}.zip build
+                        curl --fail --show-error --silent \
+                            -u "$NEXUS_USER:$NEXUS_PASS" \
+                            --upload-file "netflix-build-${BUILD_NUMBER}.zip" \
+                            "$NEXUS_URL/repository/$NEXUS_REPO/netflix-build-${BUILD_NUMBER}.zip"
+                    '''
+                }
             }
         }
 
