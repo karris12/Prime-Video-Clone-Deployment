@@ -50,7 +50,7 @@ newgrp docker
 sudo systemctl status docker
 ```
 
-# **Install Trivy on Ubuntu:**
+# **Install Trivy on Ubunttu:**
 
 Reference Document: https://aquasecurity.github.io/trivy/v0.55/getting-started/installation/
 ```
