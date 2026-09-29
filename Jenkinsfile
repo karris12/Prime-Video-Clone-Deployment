@@ -11,7 +11,7 @@ pipeline {
         DOCKERHUB_REPO = 'agodzo/amazon-prime'
         IMAGE_TAG = 'latest'
         SCANNER_HOME = tool 'sonar-scanner'
-        NEXUS_URL = 'http://18.188.207.176:8081'
+        NEXUS_URL = 'http://18.191.191.205:8081'
         NEXUS_REPO = 'netflix'
     }
 
