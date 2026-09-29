@@ -19,6 +19,7 @@ pipeline {
         stage('Clean Workspace') {
             steps {
                 cleanWs()
+                
             }
         }
 
@@ -155,6 +156,13 @@ pipeline {
                 to: 'rooseveltaws@gmail.com',
                 mimeType: 'text/html',
                 attachmentsPattern: 'trivy.txt'
+        }
+    }
+}
+post {
+        always {
+            cleanWs()
+            sh 'docker system prune -af --volumes'
         }
     }
 }
