@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+    }
+
     tools {
         jdk 'jdk17'
         nodejs 'node16'
@@ -156,13 +160,6 @@ pipeline {
                 to: 'rooseveltaws@gmail.com',
                 mimeType: 'text/html',
                 attachmentsPattern: 'trivy.txt'
-        }
-    }
-}
-post {
-        always {
-            cleanWs()
-            sh 'docker system prune -af --volumes'
         }
     }
 }
