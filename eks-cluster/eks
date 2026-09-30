@@ -1,0 +1,5 @@
+# Create Cluster
+eksctl create cluster --name=amcdemo \
+                      --region=us-east-2 \
+                      --zones=us-east-2a,us-east-2b \
+                      --without-nodegroup                  
